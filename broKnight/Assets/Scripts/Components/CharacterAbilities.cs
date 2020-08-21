@@ -7,10 +7,15 @@ public class CharacterAbilities : MonoBehaviour
     protected float HorizontalInput;
     protected float VerticalInput;
 
+    protected CharacterController controller;
+    protected CharacterMovement characterMovement;
+
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
+        characterMovement = GetComponent<CharacterMovement>();
     }
 
     protected virtual void Update()
@@ -22,6 +27,7 @@ public class CharacterAbilities : MonoBehaviour
     protected virtual void HandleAbility()
     {
         InternalInput();
+        HandleInput();
     }
 
     //here we get neccessary input we need to perform our actions
@@ -33,7 +39,7 @@ public class CharacterAbilities : MonoBehaviour
     //here we get the main input we need to control our character
     protected virtual void InternalInput()
     {
-        HorizontalInput = Input.GetAxis("Horizontal");
-        VerticalInput = Input.GetAxis("Vertical");
+        HorizontalInput = Input.GetAxisRaw("Horizontal");
+        VerticalInput = Input.GetAxisRaw("Vertical");
     }
 }
