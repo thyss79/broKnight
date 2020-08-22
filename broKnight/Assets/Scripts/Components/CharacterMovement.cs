@@ -19,6 +19,7 @@ public class CharacterMovement : CharacterAbilities
     {
         base.HandleAbility();
         MoveCharacter();
+        UpdateAnimation();
     }
 
     private void MoveCharacter()
@@ -31,7 +32,7 @@ public class CharacterMovement : CharacterAbilities
 
     private void UpdateAnimation()
     {
-        if (HorizontalInput > 0.1f || VerticalInput > 0.1f)
+        if (Mathf.Abs(HorizontalInput) > 0.1f || Mathf.Abs(VerticalInput) > 0.1f)
         {
             animator.SetBool("Moving", true);
         }
