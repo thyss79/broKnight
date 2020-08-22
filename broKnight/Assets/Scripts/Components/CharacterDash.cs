@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterDash : CharacterAbilities
 {
-    [SerializeField] private float dashDistance = 5f;
+    [SerializeField] private float dashDistance = 10f;
     [SerializeField] private float dashDuration = 0.5f;
 
     private bool isDashing;
@@ -30,7 +30,8 @@ public class CharacterDash : CharacterAbilities
             if (dashTimer < dashDuration)
             {
                 newPosition = Vector2.Lerp(dashOrigin, dashDestination, dashTimer/dashDuration);
-                
+                controller.MovePosition(newPosition);
+                dashTimer += Time.deltaTime;
             }
             else
             {
@@ -43,12 +44,16 @@ public class CharacterDash : CharacterAbilities
     {
         isDashing = true;
         dashTimer = 0f;
+        controller.NormalMovement = false;
         dashOrigin = transform.position;
+
+        dashDestination = transform.position + (Vector3)    controller.CurrentMovment.normalized * dashDistance;
     }
 
     private void StopDash()
     {
-
+        isDashing = false;
+        controller.NormalMovement = true;
     }
 }
 
