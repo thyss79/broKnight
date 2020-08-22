@@ -12,6 +12,7 @@ public class CharacterMovement : CharacterAbilities
     {
         base.Start();
         MoveSpeed = walkSpeed;
+        UpdateAnimation();
     }
 
     protected override void HandleAbility()
@@ -26,6 +27,18 @@ public class CharacterMovement : CharacterAbilities
         Vector2 movementNormalized = movement.normalized;
         Vector2 movementSpeed = movementNormalized * MoveSpeed;
         controller.SetMovement(movementSpeed);
+    }
+
+    private void UpdateAnimation()
+    {
+        if (HorizontalInput > 0.1f || VerticalInput > 0.1f)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
     }
 
     public void ResetSpeed()

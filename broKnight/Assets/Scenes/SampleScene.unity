@@ -157,7 +157,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.38679248, g: 0.3521271, b: 0.3521271, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 1063682520}
   - component: {fileID: 1063682519}
   - component: {fileID: 1063682524}
+  - component: {fileID: 1063682529}
   - component: {fileID: 1063682523}
   - component: {fileID: 1063682522}
   - component: {fileID: 1063682525}
@@ -336,7 +337,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.45, y: 0.64}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.45, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -420,3 +421,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flipMode: 0
   treshold: 0.1
+--- !u!95 &1063682529
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063682518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7c4ca32eebe3f3e46975110e79ca00a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

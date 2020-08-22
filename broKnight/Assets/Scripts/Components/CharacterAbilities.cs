@@ -9,6 +9,7 @@ public class CharacterAbilities : MonoBehaviour
 
     protected CharacterController controller;
     protected CharacterMovement characterMovement;
+    protected Animator animator;
 
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class CharacterAbilities : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         characterMovement = GetComponent<CharacterMovement>();
+        animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()
