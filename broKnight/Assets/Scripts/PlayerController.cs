@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private Camera theCam;
 
     public Animator anim;
+
+    public GameObject bulletToFire;
+    public Transform fireFromPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +29,9 @@ public class PlayerController : MonoBehaviour
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
-        Debug.Log(moveInput.x);
-        Debug.Log(moveInput.y);
+        
+        //normalizujemy szybkosc tuchu po ukosie
+        moveInput.Normalize();
         //transform.position += new Vector3(moveInput.x * Time.deltaTime * moveSpeed, moveInput.y * Time.deltaTime * moveSpeed, 0f);
         theRB.velocity = moveInput * moveSpeed;
 
@@ -50,13 +54,29 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
         gunHand.rotation = Quaternion.Euler(0, 0, angle);
 
-        //if (moveInput != Vector2.zero)
-        //{
-        //    anim.SetBool("isMoving", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isMoving", false);
-        //}
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bulletToFire, fireFromPoint.position, fireFromPoint.rotation);
+        }
+
+
+
+
+
+
+
+
+
+
+
+        if (moveInput != Vector2.zero)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
     }
 }
