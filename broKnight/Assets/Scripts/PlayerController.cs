@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletToFire;
     public Transform fireFromPoint;
+
+    [SerializeField]
+    public float timeBeetwenShots = 0.2f;
+    private float shotCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,9 +62,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Instantiate(bulletToFire, fireFromPoint.position, fireFromPoint.rotation);
+            shotCounter = timeBeetwenShots;
         }
 
-
+        if (Input.GetMouseButton(0))
+        {
+            shotCounter -= Time.deltaTime;
+            if (shotCounter <= 0)
+            {
+                Instantiate(bulletToFire, fireFromPoint.position, fireFromPoint.rotation);
+                shotCounter = timeBeetwenShots;
+            }
+        }
 
 
 

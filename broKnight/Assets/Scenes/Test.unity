@@ -888,6 +888,7 @@ MonoBehaviour:
   bulletToFire: {fileID: 6016613416564554526, guid: d4b3e874b9108834d892a403480478f8,
     type: 3}
   fireFromPoint: {fileID: 1726046515}
+  timeBeetwenShots: 0.2
 --- !u!50 &1541831628
 Rigidbody2D:
   serializedVersion: 4
