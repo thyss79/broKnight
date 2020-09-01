@@ -25,7 +25,7 @@ public class PlayerBullet : MonoBehaviour
     {
         Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
-        Destroy(other.gameObject);
+        //Destroy(other.gameObject);
     }
 
     private void OnBecameInvisible()

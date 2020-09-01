@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     public float moveSpeed = 5f;
     private Vector2 moveInput;
 
@@ -19,9 +21,15 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletToFire;
     public Transform fireFromPoint;
 
-    [SerializeField]
+    [SerializeField ]
     public float timeBeetwenShots = 0.2f;
     private float shotCounter;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
