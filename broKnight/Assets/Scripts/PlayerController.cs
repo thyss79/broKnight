@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     private float shotCounter;
 
     public SpriteRenderer bodySR;
+    private float activeMoveSpeed;
+    public float dashSpeed = 8f, dashLenght = .5f, dashCooldown = 1f, dashInvincibility = .5f;
+    private float dashCounter, dashCoolCounter; 
     private void Awake()
     {
         instance = this;
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         theCam = Camera.main;
+        activeMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -46,7 +50,7 @@ public class PlayerController : MonoBehaviour
         //normalizujemy szybkosc tuchu po ukosie
         moveInput.Normalize();
         //transform.position += new Vector3(moveInput.x * Time.deltaTime * moveSpeed, moveInput.y * Time.deltaTime * moveSpeed, 0f);
-        theRB.velocity = moveInput * moveSpeed;
+        theRB.velocity = moveInput * activeMoveSpeed;
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 screenPoint = theCam.WorldToScreenPoint(transform.localPosition);
@@ -84,8 +88,32 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashCounter <= 0 && dashCoolCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLenght;
 
+                anim.SetTrigger("dash");
+                PlayerHealthController.instance.MakeInvincibile(dashInvincibility);
+            }
+        }
 
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = moveSpeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
 
 
 
