@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
         winMusic.Play();
     }
 
-    public void PlaySFX(int sfxToPlay)
+    public void PlaySFX (int sfxToPlay)
     {
         sfx[sfxToPlay].Stop();
         sfx[sfxToPlay].Play();

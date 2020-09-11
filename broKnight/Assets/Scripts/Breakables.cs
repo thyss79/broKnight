@@ -23,34 +23,46 @@ public class Breakables : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void Smash()
     {
-        if (other.tag == "Player" && PlayerController.instance.dashCounter > 0)
+        Destroy(gameObject);
+        AudioManager.instance.PlaySFX(0);
+
+        //show broken pieces
+        int picesToDrop = Random.Range(1, maxPieces);
+
+        for (int i = 0; i < picesToDrop; i++)
         {
-            Destroy(gameObject);
-            AudioManager.instance.PlaySFX(0);
+            int randPiace = Random.Range(0, brokenPiaces.Length);
+            Instantiate(brokenPiaces[randPiace], transform.position, transform.rotation);
+        }
 
-            //show broken pieces
-            int picesToDrop = Random.Range(1, maxPieces);
 
-            for (int i = 0; i < picesToDrop; i++)
+        //drop items
+        if (shouldDropItems)
+        {
+            float dropChance = Random.Range(0f, 100f);
+
+            if (dropChance < itemDropPercent)
             {
-                int randPiace = Random.Range(0, brokenPiaces.Length);
-                Instantiate(brokenPiaces[randPiace], transform.position, transform.rotation);
-            }
-
-
-            //drop items
-            if (shouldDropItems)
-            {
-                float dropChance = Random.Range(0f, 100f);
-
-                if (dropChance < itemDropPercent)
-                {
-                    int randomItem = Random.Range(0, itemsToDrop.Length);
-                    Instantiate(itemsToDrop[randomItem], transform.position, transform.rotation);
-                }
+                int randomItem = Random.Range(0, itemsToDrop.Length);
+                Instantiate(itemsToDrop[randomItem], transform.position, transform.rotation);
             }
         }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (PlayerController.instance.dashCounter > 0)
+            {
+                Smash();
+            }
+        }
+        else if (other.tag == "PlayerBullet")
+        {
+            Smash();
+        }
+
     }
 }
