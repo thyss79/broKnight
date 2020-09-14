@@ -2298,6 +2298,36 @@ CompositeCollider2D:
       - {x: -8.99997, y: -5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!1 &4876696966154635364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5426447557978611691}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5426447557978611691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876696966154635364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3698968268580431879}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6187734061696294360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,6 +2418,7 @@ Transform:
   - {fileID: 8498771921513059220}
   - {fileID: 836354639}
   - {fileID: 1116662511}
+  - {fileID: 5426447557978611691}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2403,10 +2434,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2656bdb4109d22e45951276b02b5f37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeWhenEnter: 1
+  closeWhenEnter: 0
+  openWhenEnemiesCleared: 0
   doors:
   - {fileID: 836354637}
   - {fileID: 1116662509}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!50 &1661182987
 Rigidbody2D:
   serializedVersion: 4
