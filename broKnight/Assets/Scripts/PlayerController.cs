@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
     
     [HideInInspector]
     public float dashCounter;
-    private float dashCoolCounter; 
+    private float dashCoolCounter;
+
+    [HideInInspector]
+    public bool canMove = true;
     private void Awake()
     {
         instance = this;
@@ -47,88 +50,96 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y = Input.GetAxisRaw("Vertical");
-        
-        //normalizujemy szybkosc tuchu po ukosie
-        moveInput.Normalize();
-        //transform.position += new Vector3(moveInput.x * Time.deltaTime * moveSpeed, moveInput.y * Time.deltaTime * moveSpeed, 0f);
-        theRB.velocity = moveInput * activeMoveSpeed;
-
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 screenPoint = theCam.WorldToScreenPoint(transform.localPosition);
-
-        if (mousePos.x < screenPoint.x)
+        if (canMove)
         {
-            transform.localScale = new Vector3(-1, 1f, 1f);
-            gunHand.localScale = new Vector3(-1, -1f, 1f);
-        }
-        else
-        {
-            transform.localScale = Vector3.one;
-            gunHand.localScale = Vector3.one;
-        }
+            moveInput.x = Input.GetAxisRaw("Horizontal");
+            moveInput.y = Input.GetAxisRaw("Vertical");
 
-        ////rotate gun
-        Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
-        float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        gunHand.rotation = Quaternion.Euler(0, 0, angle);
+            //normalizujemy szybkosc tuchu po ukosie
+            moveInput.Normalize();
+            //transform.position += new Vector3(moveInput.x * Time.deltaTime * moveSpeed, moveInput.y * Time.deltaTime * moveSpeed, 0f);
+            theRB.velocity = moveInput * activeMoveSpeed;
+
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 screenPoint = theCam.WorldToScreenPoint(transform.localPosition);
+
+            if (mousePos.x < screenPoint.x)
+            {
+                transform.localScale = new Vector3(-1, 1f, 1f);
+                gunHand.localScale = new Vector3(-1, -1f, 1f);
+            }
+            else
+            {
+                transform.localScale = Vector3.one;
+                gunHand.localScale = Vector3.one;
+            }
+
+            ////rotate gun
+            Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
+            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+            gunHand.rotation = Quaternion.Euler(0, 0, angle);
 
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Instantiate(bulletToFire, fireFromPoint.position, fireFromPoint.rotation);
-            shotCounter = timeBeetwenShots;
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            shotCounter -= Time.deltaTime;
-            if (shotCounter <= 0)
+            if (Input.GetMouseButtonDown(0))
             {
                 Instantiate(bulletToFire, fireFromPoint.position, fireFromPoint.rotation);
                 shotCounter = timeBeetwenShots;
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (dashCounter <= 0 && dashCoolCounter <= 0)
+            if (Input.GetMouseButton(0))
             {
-                activeMoveSpeed = dashSpeed;
-                dashCounter = dashLenght;
-
-                anim.SetTrigger("dash");
-                PlayerHealthController.instance.MakeInvincibile(dashInvincibility);
+                shotCounter -= Time.deltaTime;
+                if (shotCounter <= 0)
+                {
+                    Instantiate(bulletToFire, fireFromPoint.position, fireFromPoint.rotation);
+                    shotCounter = timeBeetwenShots;
+                }
             }
-        }
 
-        if (dashCounter > 0)
-        {
-            dashCounter -= Time.deltaTime;
-            if (dashCounter <= 0)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                activeMoveSpeed = moveSpeed;
-                dashCoolCounter = dashCooldown;
+                if (dashCounter <= 0 && dashCoolCounter <= 0)
+                {
+                    activeMoveSpeed = dashSpeed;
+                    dashCounter = dashLenght;
+
+                    anim.SetTrigger("dash");
+                    PlayerHealthController.instance.MakeInvincibile(dashInvincibility);
+                }
             }
-        }
 
-        if (dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime;
-        }
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+                if (dashCounter <= 0)
+                {
+                    activeMoveSpeed = moveSpeed;
+                    dashCoolCounter = dashCooldown;
+                }
+            }
+
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
+            }
 
 
 
 
 
 
-        if (moveInput != Vector2.zero)
-        {
-            anim.SetBool("isMoving", true);
+            if (moveInput != Vector2.zero)
+            {
+                anim.SetBool("isMoving", true);
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+            }
         }
         else
         {
+            theRB.velocity = Vector2.zero;
             anim.SetBool("isMoving", false);
         }
     }

@@ -7578,7 +7578,6 @@ GameObject:
   - component: {fileID: 1413742484}
   - component: {fileID: 1413742485}
   - component: {fileID: 1413742486}
-  - component: {fileID: 1413742487}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -7654,20 +7653,6 @@ MonoBehaviour:
   levelMusic: {fileID: 1814795875}
   gameOverMusic: {fileID: 1163261505}
   winMusic: {fileID: 1473538814}
---- !u!114 &1413742487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413742483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326b487072837ef4482464a0be02ff20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitToLoad: 3.5
-  nextLevel: Test2
 --- !u!1 &1442441035
 GameObject:
   m_ObjectHideFlags: 0
@@ -17234,11 +17219,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level_Exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812338178673411564, guid: ba63c30d663a7af47ad6c89c312c5102,
-        type: 3}
-      propertyPath: levelToLoad
-      value: Test2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba63c30d663a7af47ad6c89c312c5102, type: 3}
