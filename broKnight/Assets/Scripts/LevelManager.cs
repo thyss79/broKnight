@@ -32,6 +32,8 @@ public class LevelManager : MonoBehaviour
 
         PlayerController.instance.canMove = false;
 
+        UIController.instance.StartFadeToBlack();
+
         yield return new WaitForSeconds(waitToLoad);
 
         SceneManager.LoadScene(nextLevel);
