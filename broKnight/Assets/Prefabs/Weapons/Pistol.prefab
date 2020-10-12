@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,7 +100,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 4150162488350442314}
   timeBetweenShots: 0.75
-  weaponName: Pistol
+  weaponName: Pistolet
   gunUI: {fileID: 262978286505467586, guid: f72804754a2106a4884d758772ef2a02, type: 3}
   itemCost: 25
   gunShopSprite: {fileID: 6407226241554960098, guid: 48d85d1ef51430e42b6aef57f02c863d,

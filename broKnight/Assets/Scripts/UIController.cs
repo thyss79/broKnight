@@ -40,6 +40,9 @@ public class UIController : MonoBehaviour
 
         currentGun.sprite = PlayerController.instance.availableGuns[PlayerController.instance.currentGun].gunUI;
         gunText.text = PlayerController.instance.availableGuns[PlayerController.instance.currentGun].weaponName;
+
+        PlayerController.instance.GetMoveJoystick();
+        PlayerController.instance.GetGunJoystick();
     }
 
     // Update is called once per frame

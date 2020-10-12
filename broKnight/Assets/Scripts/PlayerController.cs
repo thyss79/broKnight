@@ -7,7 +7,15 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     public float moveSpeed;
+
+    GameObject moveJoy;
+    public VariableJoystick variableJoystick;
+
+    GameObject gunJoy;
+    public VariableJoystick variableJoystickGun;
+
     private Vector2 moveInput;
+    
 
     public Rigidbody2D theRB;
 
@@ -38,6 +46,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public int currentGun;
 
+    
+
     private void Awake()
     {
         instance = this;
@@ -54,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
         UIController.instance.currentGun.sprite = availableGuns[currentGun].gunUI;
         UIController.instance.gunText.text = availableGuns[currentGun].weaponName;
+        //variableJoystick = CharacterTracker.instance.variableJoystickTracker;
     }
 
     // Update is called once per frame
@@ -61,19 +72,26 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove && !LevelManager.instance.isPaused)
         {
-            moveInput.x = Input.GetAxisRaw("Horizontal");
-            moveInput.y = Input.GetAxisRaw("Vertical");
 
+            //Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
+            //theRB.AddForce(direction * activeMoveSpeed * Time.fixedDeltaTime, (ForceMode2D)ForceMode.VelocityChange);
+
+            //moveInput.x = Input.GetAxisRaw("Horizontal");
+            //moveInput.y = Input.GetAxisRaw("Vertical");
+
+            
+            moveInput.x = variableJoystick.Horizontal;
+            moveInput.y = variableJoystick.Vertical;
             moveInput.Normalize();
 
             //transform.position += new Vector3(moveInput.x * Time.deltaTime * moveSpeed, moveInput.y * Time.deltaTime * moveSpeed, 0f);
 
             theRB.velocity = moveInput * activeMoveSpeed;
 
-            Vector3 mousePos = Input.mousePosition;
+            //Vector3 mousePos = Input.mousePosition;
             Vector3 screenPoint = CameraController.instance.mainCamera.WorldToScreenPoint(transform.localPosition);
 
-            if (mousePos.x < screenPoint.x)
+            if (variableJoystickGun.Direction.x < screenPoint.x)
             {
                 transform.localScale = new Vector3(-1f, 1f, 1f);
                 gunArm.localScale = new Vector3(-1f, -1f, 1f);
@@ -85,8 +103,8 @@ public class PlayerController : MonoBehaviour
             }
 
             //rotate gun arm
-            Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
-            float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+            //Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
+            float angle = Mathf.Atan2(variableJoystickGun.Direction.y, variableJoystickGun.Direction.x) * Mathf.Rad2Deg;
             gunArm.rotation = Quaternion.Euler(0, 0, angle);
 
 
@@ -195,4 +213,17 @@ public class PlayerController : MonoBehaviour
 
         AudioManager.instance.PlaySFX(6);
     }
+
+    public void GetMoveJoystick()
+    {
+        moveJoy = GameObject.Find("JoystickMove");
+        variableJoystick = moveJoy.GetComponentInChildren(typeof(VariableJoystick)) as VariableJoystick;
+    }
+
+    public void GetGunJoystick()
+    {
+        gunJoy = GameObject.Find("JoystickGun");
+        variableJoystickGun = gunJoy.GetComponentInChildren(typeof(VariableJoystick)) as VariableJoystick;
+    }
+
 }

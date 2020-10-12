@@ -60,7 +60,10 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerController.instance.gameObject.SetActive(false);
 
+                GameObject.Find("JoystickGun").SetActive(false);
+                GameObject.Find("JoystickMove").SetActive(false);
                 UIController.instance.deathScreen.SetActive(true);
+
 
                 AudioManager.instance.PlayGameOver();
                 AudioManager.instance.PlaySFX(8);
