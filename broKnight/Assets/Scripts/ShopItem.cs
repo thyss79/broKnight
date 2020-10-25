@@ -39,7 +39,7 @@ public class ShopItem : MonoBehaviour
     {
         if(inBuyZone)
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.anyKeyDown)
             {
                 if(LevelManager.instance.currentCoins >= itemCost)
                 {

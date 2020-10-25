@@ -258,7 +258,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press 'E' to purchase
+  m_Text: Dotknij by kupic
 --- !u!114 &1358613685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,7 +1407,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press 'E' to purchase
+  m_Text: Dotknij by kupic
 --- !u!114 &1268113055177898691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,7 +1581,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press 'E' to purchase
+  m_Text: Dotknij by kupic
 --- !u!114 &1268113055415925206
 MonoBehaviour:
   m_ObjectHideFlags: 0

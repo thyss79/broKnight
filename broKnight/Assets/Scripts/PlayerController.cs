@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             //Vector3 mousePos = Input.mousePosition;
             Vector3 screenPoint = CameraController.instance.mainCamera.WorldToScreenPoint(transform.localPosition);
 
-            if (variableJoystickGun.Direction.x < screenPoint.x)
+            if (variableJoystickGun.Direction.x < 0)
             {
                 transform.localScale = new Vector3(-1f, 1f, 1f);
                 gunArm.localScale = new Vector3(-1f, -1f, 1f);

@@ -34,7 +34,9 @@ public class Gun : MonoBehaviour
             else
             {
 
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+                //if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+                
+                if (PlayerController.instance.variableJoystickGun.Direction != Vector2.zero)
                 {
                     Instantiate(bulletToFire, firePoint.position, firePoint.rotation);
                     shotCounter = timeBetweenShots;

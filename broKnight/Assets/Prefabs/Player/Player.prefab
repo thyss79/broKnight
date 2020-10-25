@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   variableJoystick: {fileID: 6964961041190657873}
+  variableJoystickGun: {fileID: 0}
   theRB: {fileID: 1432713949977425596}
   gunArm: {fileID: 1432713949623797517}
   anim: {fileID: 1432713949977425599}

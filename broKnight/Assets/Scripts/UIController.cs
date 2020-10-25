@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
 
     public Slider bossHealthBar;
 
+    public Touch xxx;
 
     private void Awake()
     {
@@ -65,6 +66,7 @@ public class UIController : MonoBehaviour
                 fadeToBlack = false;
             }
         }
+
     }
 
     public void StartFadeToBlack()

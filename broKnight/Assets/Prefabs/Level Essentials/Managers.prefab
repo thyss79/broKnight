@@ -1782,9 +1782,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitToLoad: 4
-  nextLevel: Level 2
+  nextLevel: Level 1
   isPaused: 0
-  currentCoins: 0
+  currentCoins: 35
   startPoint: {fileID: 2146864434}
 --- !u!1 &9107463910319276572
 GameObject:
