@@ -429,6 +429,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 683603072, guid: bd313fc95d2f0694cb3685db175d63d4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420030}
+    - target: {fileID: 690950238, guid: bd313fc95d2f0694cb3685db175d63d4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420030}
     - target: {fileID: 929713034199814392, guid: bd313fc95d2f0694cb3685db175d63d4,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -548,11 +556,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1698566317870103758, guid: bd313fc95d2f0694cb3685db175d63d4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd313fc95d2f0694cb3685db175d63d4, type: 3}

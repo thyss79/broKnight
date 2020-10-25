@@ -38,16 +38,6 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, target.position.y, transform.position.z), moveSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.M) && !isBossRoom)
-        {
-            if(!bigMapActive)
-            {
-                ActivateBigMap();
-            } else
-            {
-                DeactivateBigMap();
-            }
-        }
     }
 
     public void ChangeTarget(Transform newTarget)
@@ -71,6 +61,8 @@ public class CameraController : MonoBehaviour
 
             UIController.instance.mapDisplay.SetActive(false);
             UIController.instance.bigMapText.SetActive(true);
+            UIController.instance.bigMapButtonDeactivate.SetActive(true);
+            UIController.instance.joysticksObject.SetActive(false);
         }
     }
 
@@ -89,6 +81,24 @@ public class CameraController : MonoBehaviour
 
             UIController.instance.mapDisplay.SetActive(true);
             UIController.instance.bigMapText.SetActive(false);
+            UIController.instance.bigMapButtonDeactivate.SetActive(false);
+            UIController.instance.joysticksObject.SetActive(true);
+
+        }
+    }
+
+    public void ButtonActivaDeactivateteMap()
+    {
+        if (!isBossRoom)
+        {
+            if (!bigMapActive)
+            {
+                ActivateBigMap();
+            }
+            else
+            {
+                DeactivateBigMap();
+            }
         }
     }
 }
